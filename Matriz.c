@@ -7,6 +7,10 @@ void inicializa_grafo( Grafo *p, int l, int c ){
 	p->col = c;
 	
 	p->dados = malloc( sizeof(int *) * l );
+	p->vertice = malloc(sizeof(int *) * l );
+	p->topoVerificados = -1;
+	p->topoVertices = 10;
+	
 	int i, j;
 	for( i = 0 ; i < l ; i++ ){
 		p->dados[i] = calloc(c, sizeof(int) );
@@ -45,6 +49,29 @@ void carrega_info_arq(Grafo *gf)
         }
     }
     fclose(fp);    
+}
+
+int pilha_vazia ( Grafo p ) {
+	return p.topoVertices == -1;
+}
+
+
+int empilha ( Grafo *p, int info ) {
+	/*if( pilha_cheia ( *p ) )
+		return ERRO_PILHA_CHEIA;*/
+
+	p->topoVerificados++;
+	p->verifcados[p->topoVerificados] = info;
+	return 1; // Sucesso
+}
+
+int desempilha ( Grafo *p, int *info ) {
+	/*if ( pilha_vazia ( *p ) )
+		return ERRO_PILHA_VAZIA;*/
+
+
+	p->topoVertices--;
+	return 1; // Sucesso
 }
 
 

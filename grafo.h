@@ -13,6 +13,8 @@ int main(int argc, char *argv[]) {
 	carrega_info_arq(&gf);
 	mostra_grafo( gf );
 	
+	
+	
 	return 0;
 }
 
