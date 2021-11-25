@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Matriz.h"
+#include "Matriz.c"
 
 int main(int argc, char *argv[]) {
 	Grafo gf;
@@ -13,27 +13,26 @@ int main(int argc, char *argv[]) {
 	
 	int verticeInicial = 1;
 	
+	int x,	i;
+	
 	empilha(&gf,verticeInicial);
 	
-	int x = verticeInicial;
-	int i;
-	
-	while (pilha_vazia(gf) != -1){
-	
-		desempilha(&gf,x);
+	while (pilha_vazia(gf) == 1){
+		
+		
+		desempilha(&gf,&x);
 		if(vs[x] == 0){
-			printf("Vertice: %d\n",x);
+			printf("Vertice: %d\n",x + 1);
 		
 			vs[x] = 1;
 			
 			for(i =0; i < 9; i++){
-				if(vs[i] == 0){			
+				if(vs[i] == 0 && gf.dados[x][i] == 1){	
 					empilha(&gf, i);
-					x = i;
 				}
 			}
 		}
-		
+				
 	}
 	
 	return 0;
